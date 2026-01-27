@@ -18,11 +18,19 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(helmet());
-app.set('trust proxy', 1);
+// app.set('trust proxy', 1);
+// app.use(cors({
+//   origin: process.env.CORS_ORIGIN || 'http://localhost:5173',
+//   credentials: true
+// }));
+
+app.set("trust proxy", 1);
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || 'http://localhost:5173',
-  credentials: true
+origin: "https://accounting-frontend-theta.vercel.app",
+credentials: true
 }));
+
+app.options("*", cors());
 app.use(compression());
 app.use(morgan('dev'));
 app.use(express.json());
