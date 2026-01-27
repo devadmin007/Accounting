@@ -1,12 +1,20 @@
 const { Pool } = require("pg");
 require("dotenv").config();
 
+console.log("DB CONFIG", {
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  user: process.env.DB_USER,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASSWORD
+});
+
 const pool = new Pool({
   host: process.env.DB_HOST || "localhost",
   port: process.env.DB_PORT || 5432,
   database: process.env.DB_NAME || "accounting_db",
   user: process.env.DB_USER || "postgres",
-  password: "root",
+  password: process.env.DB_PASSWORD,
   max: 20,
   idleTimeoutMillis: 30000,
   connectionTimeoutMillis: 2000,
